@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -18,9 +20,7 @@ app.use(bodyParser.json());
 
 // MongoDB Connection
 mongoose
-  .connect(
-    "mongodb+srv://shivu:shivamgupta2004@cluster0.cuboorm.mongodb.net/urlshortener"
-  )
+  .connect(`${process.env.MONGODB_URI}/urlshortener`)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
